@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<rss version="0.91">
+<channel>
+<title>OpenTorrent</title>
+<description>TBDev is the best!</description>
+<link>http://127.0.0.1/tbdev/</link>
+<item>
+<title>WinDjView-1.0.3 (Appz/PC ISO)</title>
+<description>A general viewer for .djview files (alternate to .pdf files)</description>
+<link>http://127.0.0.1/tbdev/download.php/2/WinDjView-1.0.3-.torrent</link>
+</item>
+<item>
+<title>3000 Javascripts (Appz/misc)</title>
+<description>It's a huge collection of 3000 java-scripts.</description>
+<link>http://127.0.0.1/tbdev/download.php/1/3000 Javascript.torrent</link>
+</item>
+</channel>
+</rss>

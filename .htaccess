@@ -1,0 +1,19 @@
+######################
+#ErrorPages
+ErrorDocument 400 /bitsb/error.php?400
+ErrorDocument 401 /bitsb/error.php?401
+ErrorDocument 403 /bitsb/error.php?403
+#ErrorDocument 404 /bitsb/error.php?404
+ErrorDocument 404 /bitsb/404.html
+ErrorDocument 500 /bitsb/error.php?500
+##################################################
+
+
+########Disable .htaccess viewing from browser####
+
+<files ~ "^\.ht">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</files>
+

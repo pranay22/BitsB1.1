@@ -1,0 +1,47 @@
+.bb_holder {
+	border: 1px solid #97BCC2;
+	border-collapse:collapse;
+	background:	#DFE8F4;
+}
+.em_holder td, .em_holder td:hover, .em_holder { border:1px solid #97BCC2; 	border-collapse:separate}
+.em_holder td:hover { background:#f7fcfc; border:1px solid #97BCC2;}
+
+.bb_holder textarea, .bb_holder textarea:hover, .bb_holder textarea:focus {
+	background:#f7fcfc;
+	border:1px solid #97BCC2;
+	padding:2px;
+	font-size:12px;
+}
+.bb_holder textarea:hover, .bb_holder textarea:focus {
+	background:#f1fcfc;
+}
+
+.bb_icon, .bb_icon:hover {
+	background:#F7FCFC;
+
+	border:1px solid #97BCC2;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding:1px;
+	min-width:18px;
+	cursor:pointer;
+	margin-bottom:4px;
+}
+.bb_icon:hover {
+	border: 1px solid #2B60DE;
+}
+.color_pick td {
+	padding:0;
+	margin:0;
+	width:10px;
+	height:10px;
+	cursor:pointer;
+}
+.color_pick {
+	background:#ddd;
+	border-collapse:separate;
+	position:absolute;
+}
+.color_pick, .color_pick td {
+	border:1px solid #97BCC2;
+}

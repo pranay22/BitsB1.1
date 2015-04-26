@@ -1,0 +1,1261 @@
+/**
++------------------------------------------------
+|   BitsB PHP based BitTorrent Tracker
+|   =============================================
+|   by d6bmg
+|   Copyright (C) 2010-2011 BitsB v1.1
+|   =============================================
+|   svn: http:// coming soon.. :)
+|   Licence Info: GPL
++------------------------------------------------
+**/
+
+@import "bbcode.css";
+@import "notif_box.css";   /**Customized notification box style**/
+
+/* ------------------------------------ MAIN SITE SETTING -------------------------------------- */
+body {
+	/**font-family: Verdana, Tahoma, Arial, "Trebuchet MS", Sans-Serif, Georgia, helvetica, Courier, Times New Roman, Serif;**/
+	font-family: "arial", helvetica, sans-serif;
+    font-size: 8pt;
+    /*background: #E8ECF1;*/
+    background : #232424 url('pic/lblue053.gif') repeat fixed;
+    /*text-align : center;
+    width: 70%; height: 100%;
+    position : relative; */
+    padding: 10px 120px 10px 120px;
+    color: #257579;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    min-width : 920px;
+}
+/* -------------------------------------- IMAGES SETTINGS -------------------------------------- */
+img{
+	border: 0; /* makes sure linked images do not have a border */
+	vertical-align: middle;
+}
+/* -------------------------------------- BASE-HEADER SETTINGS -------------------------------------- */
+div#base_header {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#183859), to(#32638e)); /** webkit **/
+    background: -moz-linear-gradient(100% 100% 90deg, #183859, #32638e); /** firefox **/
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32638e', endColorstr='#183859',GradientType=0 ); /** IE fix **/
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #183859;
+    height: 85px;
+    width: 988px;
+}
+#logostrip {
+background : url('pic/logo.png') no-repeat;
+padding : 0 0;
+margin : 10px 0 0 0;
+width : 100%;
+height : 60px;
+position : relative;
+}
+/* -------------------------------------- MAIN SUBMENU SETTINGS -------------------------------------- */
+#submenu{ 
+    border-color: -moz-use-text-color #FFFFFF #FFFFFF;
+    border-right: 0 solid #FFFFFF;
+    border-style: none solid solid;
+    border-width: 0 0 0;
+    color: #3A4F6C;
+    height: 22px;
+    margin: 0;
+    text-align: right;
+}
+
+.tb-top-left-link,
+.tb-top-right-link
+{
+	float: right;
+	font-size: 10px;
+	font-weight: bold; 
+	letter-spacing: 0.5px;
+	margin-top: 4px;
+	width: auto;
+}
+
+.tb-top-left-link {
+	float: left;
+}
+
+.forumtable
+{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+/*  font-family: Verdana, Arial, sans-serif; */
+  font-size: 8pt;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+#submenu a:link, 
+#submenu  a:visited,
+#submenu a:hover, 
+#submenu a:active { 
+	background: #003977;
+        border : 1px solid #FFF; 
+	color: #FFF; 
+        padding: 1px 3px 2px 4px;
+        margin: 0px 1px 0px 2px;
+        text-decoration:none;
+}
+
+#submenu a:hover, 
+#submenu a:active{
+	background: #EA5F00;
+}
+
+/*
+status bar style
+*/
+#statusbar{ 
+	background: #aec9cd;
+	border: 1px solid #aec9cd;
+	margin: 2px 2px 2px 2px;
+	padding: 0 0px 0 0px;
+}
+
+#statusbar p{
+	background: transparent !important;
+	border: 0 !important;
+	font-size: 10px;
+	font-weight: bold; 
+	letter-spacing: 1px;
+	margin: 0 !important;
+	padding: 3px 0 3px 0; 
+	text-align: right;
+}
+
+#statusbar p{
+	font-weight: normal;
+	letter-spacing: 0;
+}
+
+#statusbar p.home{
+	float: left;
+}
+/*
+status bar
+*/
+
+table {
+  border-collapse: collapse;
+  border: none;
+   background-color: #dfe8f4; 
+}
+table.main, table.mainouter {
+  background-color: transparent;
+  border: none none;
+}
+table.bottom {
+  background: transparent;
+}
+
+h1 {
+  font-size: 12pt;
+}
+
+h2 {
+  font-size: 10pt;
+  margin-bottom: 6px;
+}
+
+h3 {
+  font-size: 11pt;
+  margin-bottom: 6px;
+}
+
+p {
+	font-size: 8pt;
+}
+
+p.sub { 
+  margin-bottom: 4pt;
+}
+
+td {
+	font-size: 8pt;
+	border: solid #97BCC2 1px;
+}
+
+td.embedded {
+   border: none;
+   padding: 0px;
+  text-align: left;
+}
+
+td.bottom {
+  border: none;
+}
+
+td.heading {
+  font-weight: bold;
+}
+
+td.text {
+  padding: 10pt;
+  text-align: left;
+}
+
+td.comment {
+  padding: 10pt;
+  font-size: 8pt;
+  text-align: left;
+}
+
+td.colhead {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#183859), to(#32638E)); /* Webkit */
+    background: -moz-linear-gradient(100% 100% 90deg, #183859, #32638E);  /* Firefox */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32638E', endColorstr='#183859',GradientType=0 );  /* IE fix */
+    /**background: url("pic/bg_h1.png") repeat scroll 0 0 transparent;**/
+    border: 1px solid #97BCC2;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #183859;
+    color: #FFFFFF;
+    font-weight: bolder;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+td.colhead5 {
+    background: url("pic/bg_h1.png") repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#183859), to(#32638E)); /* Webkit */
+    background: -moz-linear-gradient(100% 100% 90deg, #183859, #32638E);  /* Firefox */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32638E', endColorstr='#183859',GradientType=0 );  /* IE fix */
+    border: 1px solid #97BCC2;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #183859;
+    color: #FFFFFF;
+    font-weight: bolder;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+tr.colhead {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#183859), to(#32638E)); /* Webkit */
+    background: -moz-linear-gradient(100% 100% 90deg, #183859, #32638E);  /* Firefox */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32638E', endColorstr='#183859',GradientType=0 );  /* IE fix */
+    border: 1px solid #97BCC2;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #183859;
+    color: #FFFFFF;
+    font-weight: bolder;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+td.rowhead {
+  font-weight: bold;
+  text-align: right;
+  /**vertical-align: top;**/
+}
+
+td.title {
+	font-size: 14pt;
+}
+
+td.navigation {
+	font-weight: bold;
+	font-size: 10pt;
+   border: none;
+}
+
+td.clear {
+  padding: 0px;
+  border: 0px;
+  background: transparent;
+}
+
+form {
+	display: inline;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 0;
+}
+
+.sublink {
+	font-style: italic;
+	font-size: 7pt;
+	font-weight: normal;
+}
+
+/* -------------------------------------- PAGINATION LINKS SETTINGS -------------------------------------- */
+font.gray
+{
+  color: #ACA899;
+  text-decoration: underline;
+}
+
+.pagelink,
+.pagelinklast,
+.pagecurrent,
+.minipagecurrent,
+.minipagelink,
+.minipagelinklast{
+	background: #F0F5FA;
+	border: 1px solid #072A66;
+	padding: 1px 3px 1px 3px;
+}
+
+.pagelinklast,
+.minipagelinklast{
+	background: #DFE6EF;
+}
+
+.pagecurrent{
+	background: #FFC9A5;
+}
+
+.minipagecurrent{
+	background: #F0F5FA;
+	font-size: 10px;
+}
+
+.minipagelink,
+.minipagelinklast{
+	border: 1px solid #C2CFDF;
+	font-size: 10px;
+	margin: 0 1px 0 0;
+}
+
+.pagelink a:active,
+.pagelink a:visited,
+.pagelink a:link,
+.pagelinklast a:active,
+.pagelinklast a:visited,
+.pagelinklast a:link,
+.pagecurrent a:active,
+.pagecurrent a:visited,
+.pagecurrent a:link,
+.minipagelink a:active,
+.minipagelink a:visited,
+.minipagelink a:link,
+.minipagelinklast a:active,
+.minipagelinklast a:visited,
+.minipagelinklast a:link{
+	text-decoration: none;
+}
+/*pagination links end*/
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #1A3B5D;
+  /*font-weight: bold;*/
+}
+
+a:hover {
+  color: #376C9A;
+}
+
+a.index {
+	font-weight: bold;
+}
+
+a.biglink {
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+a.altlink:link, a.altlink:visited{
+	font-weight: bold;
+	color: #335D9C;
+	text-decoration: none;
+}
+
+a.altlink:hover {
+  text-decoration: underline;
+}
+
+a.altlink_blue:link, a.altlink_blue:visited{
+	font-weight: bold;
+	color: #97BCC2;
+	text-decoration: none;
+}
+
+a.altlink_blue:hover {
+  text-decoration: underline;
+}
+
+a.altlink_green:link, a.altlink_green:visited{
+	font-weight: bold;
+	color: #007800;
+	text-decoration: none;
+}
+
+a.altlink_green:hover {
+  text-decoration: underline;
+}
+
+a.colheadlink:link, a.colheadlink:visited {
+   font-weight: bold;
+   color: #FFFFFF;
+   text-decoration: none;
+}
+
+a.colheadlink:hover {
+   text-decoration: underline;
+}
+
+.important {
+	font-weight: bold;
+	font-size: 8pt;
+}
+
+.red {
+	color: #ee0000;
+}
+
+.yellow {
+	color: #997700;
+}
+
+.green {
+	color: #000000;
+}
+/* -------------------------------------- USERNAME, PASSWORD, EMAIL, SEARCH, SHOUTBOX INPUT CLASS SETTINGS -------------------------------------- */
+/*class for Username, Password, Email inputs*/
+.user {
+	background-image: url(pic/login/username.png);
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding-left: 14px;
+	font-family: "Tahoma", "Verdana", "Arial", "Sans-serif";
+	font-size: 11px;
+	color: #000;
+}
+.pass {
+	background-image: url(pic/login/password.png);
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding-left: 14px;
+	font-family: "Tahoma", "Verdana", "Arial", "Sans-serif";
+	font-size: 11px;
+	color: #000;
+}
+.email {
+	background-image: url(pic/login/email.png);
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding-left: 14px;
+	font-family: "Tahoma", "Verdana", "Arial", "Sans-serif";
+	font-size: 11px;
+	color: #000;
+}
+.search1 {
+	background-image: url(pic/login/icon_search.png);
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding-left: 19px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+	font-family: "Tahoma", "Verdana", "Arial", "Sans-serif";
+	font-size: 11px;
+	color: #000;
+}
+.sbox {
+	background-image: url(pic/login/icon_shout.png);
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding-left: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+	font-family: "Tahoma", "Verdana", "Arial", "Sans-serif";
+	font-size: 11px;
+	color: #000;
+}
+/*class for Username, Password, Email, Search, Shoutbox inputs*/
+
+input, select, textarea {
+	background: #f7fcfc;
+	border: 1px solid #97BCC2;
+	color: #1A3B5D;
+	font-size: 11px;
+	margin: 5px;
+	padding: 2px;
+	vertical-align: middle;
+    -webkit-border-radius: 4px;
+	-moz-border-radius: 4px; 
+	border-radius: 4px;
+}
+
+input:focus { 
+  background-color: #F1FCFC; 
+}
+
+textarea:focus {
+  background-color: #F1FCFC; 
+}
+
+select
+{
+	margin: 0px;
+}
+
+.btn
+{
+   font-size:12px;
+   font-family:arial,sans-serif;
+   color:#FFFFFF;
+   background-color:#255c88;
+   border: 1px solid #97BCC2;
+   border-width:1px;
+   padding: 1px 3px 1px 3px;
+}
+
+.small {
+  font-size: 7pt;
+}
+
+.big {
+  font-size: 10pt;
+}
+
+li {
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+}
+
+ul {
+  margin-left: 16pt;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+/*
+Cpatcha/pin stuff
+*/
+.cimage 
+{ 
+border: 1px solid #eee; 
+}
+
+p#statusgreen 
+{ 
+font-size: 1.2em; background-color: #fff; color: #0a0; 
+}
+
+p#statusred 
+{ 
+font-size: 1.2em; background-color: #fff; color: #a00; 
+}
+
+.tag_cloud
+{padding: 3px; text-decoration: none;
+font-family: verdana;     
+}
+.tag_cloud:link  { color: #0099FF; text-decoration:none;
+}
+.tag_cloud:visited { color: #00CCFF; 
+}
+.tag_cloud:hover { color: #0000FF; background: #00CCFF; 
+}
+.tag_cloud:active { color: #0000FF; background: #FFFFFF; 
+}
+
+.forumrules_title
+{
+  background-color: #7192b2;
+	font-size: 14px;
+	color: #fff;
+	padding: 7px;
+  margin-bottom: 4px;
+}
+
+.forumrules_border
+{
+  border:1px solid #e2e2e0;
+  padding:4px;
+}
+
+.forumrules_text_border
+{
+  border:1px solid #e2e2e0;
+  padding:4px;
+}
+
+.forumrules_text
+{
+  background-color: #F1FCFC;
+	font-size: 14px;
+	color: #000;
+
+}
+
+
+.popupmenu
+{
+   background: #C2CFDF;
+   color: #3A4F6C;
+   border: 1px solid #3A4F6C;
+   text-align:left;
+   font-size:11px;
+   font-weight:bold;
+   white-space:nowrap;
+   /*padding:3px 5px 3px 3px;*/
+   /* width:120px; */
+}
+
+.popupmenu-item
+{
+	padding: 5px;
+	/*margin-top:4px;*/
+	white-space: nowrap;
+	border-bottom: 1px solid #C2CFDF;
+	color:  #000000;
+	font-weight: normal;
+}
+
+.popupmenu-item-last
+{
+	padding: 5px;
+	/*margin-top:4px;*/
+	white-space: nowrap;
+	color:  #000000;
+	font-weight: normal;
+}
+
+.popupmenubutton
+{
+   background: #C2CFDF;
+   color: #3A4F6C;
+   border: 1px solid #3A4F6C;
+   text-align:center;
+   font-size:11px;
+   font-weight:bold;
+   white-space:nowrap;
+   /*padding:3px 5px 3px 3px;*/
+   height:18px;
+   width:120px;
+}
+
+.popupmenu-item a:link, 
+.popupmenu-item a:visited,
+.popupmenu-item-last a:link, 
+.popupmenu-item-last a:visited
+{ 
+	color: #000; 
+	text-decoration: none;
+}
+
+.popupmenu-item a:hover, 
+.popupmenu-item-last a:hover
+{ 
+	color: #EA5F00; 
+	text-decoration: none;
+}
+
+
+
+.tbi
+{
+	vertical-align:middle;
+	border:0px;
+	padding:0px;
+	margin:0px;
+	float:none;
+}
+
+.menusep
+{
+	white-space: nowrap;  /* stop menu collapsing in IE */
+	padding-top:4px;
+	padding-bottom:3px;
+	border-bottom:1px solid #DDD;
+}
+
+.menuseplast
+{
+	white-space: nowrap; /* stop menu collapsing in IE */
+	padding-top:4px;
+	padding-bottom:3px;
+	color: #000;
+}
+
+.menusep a:link, 
+.menusep a:visited, 
+.menusep a:active,
+.menuseplast a:link, 
+.menuseplast a:visited, 
+.menuseplast a:active
+{
+	text-decoration:none;
+	font-weight:bold;
+	color: #000000;
+}
+
+.roundedCorners {
+	border: 1px solid #97BCC2;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+.balloonstyle{
+position:absolute;
+top: -500px;
+left: 0;
+padding: 5px;
+visibility: hidden;
+border:1px solid #EAFF08;
+font:normal 12px Verdana;
+color: #FF6600;
+line-height: 18px;
+z-index: 100;
+background-color: #FFFFD4;
+width: 400px;
+/*Remove below line to remove shadow. Below line should always appear last within this CSS*/
+filter: progid:DXImageTransform.Microsoft.Shadow(color=gray,direction=135,Strength=5);
+}
+#arrowhead{
+z-index: 99;
+position:absolute;
+top: -500px;
+left: 0;
+visibility: hidden;
+}
+a.info{
+    position:relative; /*this is the key*/
+    z-index:24; /*background-color:#ccc;*/
+    color:#000;
+    text-decoration:none}
+a.info:hover{z-index:25}
+a.info span{display: none}
+a.info:hover span{ /*the span will display just on :hover state*/
+    display:block;
+    position:absolute;
+    top:2em; left:2em; width:15em;
+    border:1px solid #97BCC2;
+    background-color:#dee7f4; color:#000;
+    text-align: center}
+
+td.clearalt6 {
+ background: #DFE8F4;
+ padding: 5px;
+ border: 1px;
+ border-color: #97BCC2;
+ border-style: solid solid solid;
+ border-width: 1px 1px 1px;
+}
+td.clearalt7 {
+ padding: 5px;
+ background: #DFE8F4;
+ border: 1px;
+ border-color: #97BCC2;
+ border-style: solid solid solid;
+ border-width: 1px 1px 1px;
+}
+
+.codetop {
+    background: #0099FF url(../pic/bbcode/code.jpg) no-repeat right;
+    color: #000;
+    font-weight: bold;
+    margin: 0 auto 0 auto;
+    padding: 3px;
+    border: 1px solid #000;
+    width:500px;
+}
+.codemain {
+    background: #FFF;
+    border: 1px solid #000;
+    color: #000;
+    margin: 0 auto 0 auto;
+    padding: 3px;
+    width:500px;
+    overflow:auto;
+    height:150px;
+}
+.sent, .notsent {
+	width:100%;
+	padding:5px;
+	margin:5px;
+	border:1px solid;
+	color:#333333;
+	text-align:left;
+	font-weight:bold;
+}
+.sent {
+border-color: #49c24f;
+background:#bcffbf;
+}
+.notsent {
+border-color: #c24949;
+background:#ffbcbc;
+}
+tr.browse:hover {
+ background-color: #bed8e6;
+}
+td.subheader {
+    background-color: #ADCBE7;
+    color: #184b6e;
+    
+    
+}
+a.altlink_white:link, a.altlink_white:visited{
+font-weight: bold;
+color: #FFF;
+text-decoration: none;
+}
+a.altlink_white:hover {
+  text-decoration: underline;
+}
+
+th.colhead {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#183859), to(#32638E)); /* Webkit */
+    background: -moz-linear-gradient(100% 100% 90deg, #183859, #32638E);  /* Firefox */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32638E', endColorstr='#183859',GradientType=0 );  /* IE fix */
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #183859;
+    border: 1px solid #97BCC2;
+    color: #FFFFFF;
+    font-weight: bolder;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: left;
+}
+///////////Tabs on details page/////////
+h1 {font-size: 3em; margin: 20px 0;}
+.container {width: 75%; margin: 10px auto;}
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	width: 100%;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px;
+	line-height: 31px;
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px;
+	background: #d4e3e6;
+	overflow: hidden;
+	position: relative;
+}
+ul.tabs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	border: 1px solid #fff;
+	outline: none;
+}
+ul.tabs li a:hover {
+	background: #ccc;
+}	
+html ul.tabs li.active, html ul.tabs li.active a:hover  {
+	background: grey
+	border-bottom: 1px solid #fff;
+}
+.tab_container {
+	border: 1px solid #999;
+	border-top: none;
+	clear: both;
+	float: left; 
+	width: 100%;
+	background: transparent;
+	-moz-border-radius-bottomright: 5px;
+	-khtml-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+}
+.tab_content h2 {
+	font-weight: normal;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #ddd;
+	font-size: 1.8em;
+}
+.tab_content h3 a{
+	color: #254588;
+}
+.tab_content img {
+	#float: left;
+	margin: 0 20px 20px 0;
+	border: 1px solid #ddd;
+	padding: 5px;
+}
+
+.tab_box { border:1px solid #ddd;padding:2px;} 
+.tab_handle,.tab_handle_inactive {border:1px solid #ddd;display:inline; border-width:1px 1px 0 1px;padding:2px 5px 0 5px;cursor:pointer;} 
+.tab_handle_inactive { border:1px solid #333;border-width:1px 1px 0 1px;}        
+.tab_holder {width:700px;}
+
+
+/*----------------------ripped from 09installer------------------------*/
+div.headline {
+    background: url("pic/bg_h1.png") repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#183859), to(#32638E)); /* Webkit */
+    background: -moz-linear-gradient(100% 100% 90deg, #183859, #32638E);  /* Firefox */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32638E', endColorstr='#183859',GradientType=0 );  /* IE fix */
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #183859;
+    border: 1px solid #97BCC2;
+    color: #FFFFFF;
+    font-weight: bolder;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: left;
+    width: 957px;
+}
+div.headline2 {
+    background: url("pic/head_bg.png") repeat scroll 0 0 transparent;
+    border: 1px solid #97BCC2;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: left;
+    width: 957px;
+}
+div.headbody {
+    background: none repeat scroll 0 0 #dfe8f4;
+    border-color: -moz-use-text-color #97BCC2 #97BCC2;
+    border-right: 1px solid #97BCC2;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: left;
+    width: 947px;
+}
+.headbody a, .headbody a:visited, .headbody a:active {
+    color: #000000;
+    text-decoration: none;
+}
+.headbody a:hover {
+    color: #303030;
+    text-decoration: none;
+}
+div#mover { 
+    width: 988px; 
+    margin-left: -20px; 
+}
+table.stats, table.mainouter1 {
+  background-color: #E8ECF1;
+  border: medium none;
+  border-color: #97BCC2;
+  
+}
+div.newshead {
+    background: none repeat scroll 0 0 #C4D0DF;
+    border: 1px solid #97BCC2;
+    color: #FFFFFF;
+    padding: 5px;
+    text-align: left;
+    width: 937px;
+}
+div.base_around {
+    background: none repeat scroll 0 0 #DBE3EA;
+    border: 1px solid #97BCC2;
+    margin: 0 auto;
+    width: 1000px;
+    padding: 0 0 0 0;
+}
+div.base_content {
+    background: none repeat scroll 0 0 #E8ECF1;
+    border: 1px solid #97BCC2;
+    margin: 5px auto;
+    width: 988px;
+}
+div#footer1 {
+    background: none repeat scroll 0 0 #DBE3EA;
+    clear: both;
+    color: #666666;
+    margin: 2px 16px;
+    padding: 0px 0px 4px;
+    text-align: left;
+    
+    width: 930px;
+}
+/* -------------------------------------- BASE-MENU SETTINGS -------------------------------------- */
+div#base_menu {
+    background: url("pic/bg_m.png") repeat scroll 0 0 transparent; 
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0c1a2b), to(#122843)); /* Webkit */
+    background: -moz-linear-gradient(100% 100% 90deg, #183859, #0C1A2B) repeat scroll 0 0 transparent; /* FireFox */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c1a2b', endColorstr='#122843',GradientType=0 ); /* IE Fix */
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #0c1a2b;
+    color: #FFFFFF;
+    height: 35px;
+    width: 988px;  
+}
+div#mover { width: 988px; margin-left: -20px; }
+div#base_header_line {
+    background: none repeat scroll 0 0 #23446D;
+    height: 10px;
+    width: 988px;
+}
+div#base_header_fly {
+    -moz-border-radius-bottomleft: 5px;
+    background: none repeat scroll 0 0 #23446D;
+    border: 1px solid #23446D;
+    float: right;
+    height: 30px;
+    margin-top: -7px;
+    width: 460px;
+}
+div#base_logo {
+    height: 82px;
+    width: 328px;
+}
+div#base_donate {
+    float: right;
+    width: 100px;
+    margin-top: -38px;
+    margin-bottom: -20px;
+}
+div#base_usermenu {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: none repeat scroll 0 0 #375B83;
+    border: 1px solid #142E4E;
+    color: #FFFFFF;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 10px;
+    padding-left: 8px;
+    text-shadow: 1px 1px 1px #000000;
+    width: 220px;
+}
+div#base_icons {
+    float: right;
+    margin-top: -32px;
+    width: 210px;
+}
+span.base_usermenu_arrow {
+    width: 20px; height: 25px; float: right; 
+}
+div#slidingDiv {
+    display: none; height:540px; width:228px; border: 1px solid #142e4e; border-top: none;
+	background-color: #375b83; position: absolute; margin-left: 10px; margin-top: -5px; 
+    -moz-border-radius-bottomleft: 5px; -webkit-border-radius-bottomleft: 5px; border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px; -webkit-border-radius-bottomright: 5px; border-bottom-right-radius: 5px; }
+div.slide_head {
+    width: 223px; height: 25px; padding-left: 5px; float: left; background: #0f2338;
+    line-height: 25px; font-weight: bolder; text-align: left; color: #FFF}
+div.slide_a {
+    width: 100px; height: 25px; padding-left: 5px; float: left; background: #375b83;
+    line-height: 25px; font-weight: bolder; text-align: left; color: #FFF}
+div.slide_b {
+    width: 118px; height: 25px; padding-right: 5px; float: right; background: #375b83;
+    text-align: right; color: #FFF; line-height: 25px;}
+div.slide_c {
+    width: 100px; height: 25px; padding-left: 5px; float: left; background: #23446d;
+    line-height: 25px; font-weight: bolder; text-align: left; color: #FFF;}
+div.slide_d {
+    width: 118px; height: 25px; padding-right: 5px; float: right; background: #23446d;
+    text-align: right; color: #FFF; line-height: 25px;} 
+ul.um_menu li {
+    float: left; list-style: none; }
+.um_menu li {
+    height: 25px; padding-left: 0px; padding-right: 14px; cursor: pointer; line-height: 17px;
+    text-shadow: 1px 1px 1px #000000; filter: dropshadow(color=#000000, offx=1, offy=1);  }
+/**End of base-menu settings*******/   
+
+/* -------------------------------------- SEARCHBAR IN STDHEAD SETTINGS -------------------------------------- */
+tr.base_searchbars {
+    width: 988px; height: 30px; background: #DBE3EA;  border-bottom-color: #9BABBC; 
+border-bottom-width: 1px; 
+    text-align: left; line-height: 30px;}
+ul.search li {
+    display: inline;
+    margin: 0 1px;
+    padding: 0px 20px 0px 5px;
+}
+.search li form {
+    display: inline;
+}
+.search li table {
+	padding: 10px;
+	margin: 0px;
+	display: inline;
+}
+.search li input {
+    background-image: url(pic/login/icon_search.png);
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	padding: 3px 7px 3px 19px;
+	font-size: 10px;
+	background-color: #F7FCFC;
+	width: 160px;
+	border: 1px solid #97BCC2;
+    /**color: #97BCC2;**/
+}
+/**end of searbar style**/
+
+ul.navigation li {
+    color: #FFFFFF;
+    float: left;
+    list-style: none outside none;
+}
+.navigation li, .navigation li a {
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 18px;
+    line-height: 17px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-shadow: 1px 1px 1px #000000;
+}
+.navigation li:hover {
+    color: #FFFFFF;
+    height: 18px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-shadow: 1px 1px 1px #000000;
+}
+span.nav:hover { 
+    padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;
+    border: 2px solid #203f62; color: #ffffff;
+    background: #335881; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+span.nav{ 
+    padding-left: 12px; padding-right: 12px; padding-top: 7px; padding-bottom: 7px;}
+    
+/**span.nav:hover {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: none repeat scroll 0 0 #335881;
+    border: 2px solid #203F62;
+    color: #FFFFFF;
+    padding: 5px 6px;
+}
+span.nav {
+    padding: 7px 8px;**/
+}
+/* -------------------------------------- TOOLTIP SETTINGS-------------------------------------- */
+#tooltip {
+	background: #fcfcfc;
+    font: arial, helvetica, sans-serif;
+	font-weight: bold;
+	border: 1px solid #97BCC2;
+	color: #2e5a7c;
+	opacity: 0.81;
+	filter: alpha(opacity="91");
+	line-height: 15px;
+	z-index: 100;
+	margin: 0;
+	padding: 3px;
+	position: absolute;
+	visibility: hidden;
+	border-collapse: separate;
+}
+/** end tooltip settings **/
+#activeindex2 {width:700px; border: 1px dashed #5483e7; font-size:11px; padding:5px;}
+/* ----------------------- COLUM-HEADER USING PNG FILE TO AVOID FIREFOX GRADIENT PROBLEM ---------------------------- */
+td.colhead3 {
+    background: url("pic/head_bg.png") repeat scroll 0 0 transparent;
+    border: 1px solid #97BCC2;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 30px;
+}
+/* -------------------------------------- WARNING & MESSAGE BOX CLASS SETTINGS -------------------------------------- */
+table.fmbox-warning {
+    background: none repeat scroll 0 0 #FFDBDB;
+    border: 1px solid #BB7070;
+    width: 957px;
+}
+td.mbox-image {
+    border: medium none;
+    padding: 2px 0 2px 0.9em;
+    text-align: center;
+}
+td.mbox-text {
+    text-align: center;
+    border:  none;
+}
+/* -------------------------------------- POPUP MESSAGE SYSTEM SETTINGS -------------------------------------- */
+#showimage {
+	background-color: #cbdeee;
+    border: 1px solid #97BCC2;
+	text-align: left;
+    position: relative;
+}
+#dragbar {
+	background: url("pic/head_bg.png") repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(100% 93% 90deg, #183859, #32638E) repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+	padding: 5px;
+	cursor:hand;
+	cursor:pointer;
+}
+#close:link, 
+#close:visited, 
+#close:active { 
+	background: #003977;
+	border : 1px solid #FFF; 
+	color: #FFF; 
+	padding: 1px 3px 2px 4px;
+	margin: 0px 1px 0px 2px;
+	text-decoration:none;
+}
+#close:hover { 
+	background: #EA5F00;
+}
+.left_txt {
+	float: left;
+}
+.right_txt {
+	float: right;
+    border: 0px;
+}
+.clear {
+	clear: both;
+}
+span.subject {
+	font: bold 1.5em/2 arial;
+	margin-left: 10px;
+}
+span.from {
+	margin-left: 10px;
+}
+.msg {
+	width: 360px;
+	background: #dbe3ea;
+	border: 1px solid #97BCC2;
+	font-size: 12px;
+	margin: 10px;
+	padding: 10px;
+}
+.msg_links {
+	padding: 5px;
+}
+/**end pop-up message system**/
+
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/** ----------------------------------------------------------------------------------- */
+/** Information About This File ------------------------------------------------------- */
+/** -----------------------------------------------------------------------------------
+    This file is a part of BitsB sourcecode. Show us some respect for all this free
+    work we have done here for you, and leave all credit in the codes.
+    By removing ANY credits from these files you not allowed to get any support on the source
+    
+    Thanks for using BitsB sourcecode.
