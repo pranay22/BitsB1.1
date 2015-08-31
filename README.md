@@ -14,6 +14,5 @@ Requirements:
 3. Memcached
 
 Copyright @Pranay, All rights reserved. 
-Permission to modify and upgrade code in different branch is given. No copying without insforming the author..
 
 Note: Moved from my old Github account to official(now, only) Github account.
